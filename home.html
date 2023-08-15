@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: "Nunito", "Sans-serif";
+        }
+        body{
+            background: #f3f2ef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 100vh;
+            width: 100vh;
+        }
+        html,
+        body{
+            font-size: 62.5%;
+            height: 100%;
+        }
+        html{
+            background: #eee;
+        }
+        .box{
+            width: 20vw;
+            height: 80vh;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
+            background: black;
+            position: absolute;
+            overflow: hidden;
+            transform: translate3d(0,0,0);
+            min-width: 20rem;
+            max-width: 50rem;
+        }
+        .info{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 45%;
+            z-index: 4;
+        }
+        .location{
+            text-align: center;
+            font-weight: 100;
+            font-size: 3rem;
+            color: white;
+        }
+        #date{
+            text-align: center;
+            margin-top: 0.5rem;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .cases{
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 2rem;
+            color: white;
+        }
+        .death{
+            text-align: center;
+            font-size: 2rem;
+            color: white;
+        }
+        .covidcon{
+            display: flex;
+            height: 55%;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            color: red;
+        }
+        .covidcon .fa-solid{
+            font-size: 6em;
+        }
+        .size{
+            font-size: 3em;
+            color: white;
+            text-align: center;
+
+        }
+    </style>
+    <title>Covid Tracking</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="covidcon">
+            <i class="fa-solid fa-virus-covid"></i>
+        </div>
+        <div class="info">
+            <h2 class="location">{%location%}</h2>
+            <p id="date">SAT | AUG 12 | 19:00</p>
+            <h2 class="cases">Number of covid cases</h2>
+            <h1 class="size">{%cases%}</h1>
+            <h2 class="cases">Number of covid deaths</h2>
+            <h3 class="death">{%deaths%}</h3>
+        </div>
+    </div>
+    <script>
+        const today = document.getElementById("date");
+        const getcurday = ()=>{
+            const currtime = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            let day = weekday[currtime.getDay()];
+            return day;
+        };
+        const getCurrentday = ()=>{
+            var months = [
+                "jan",
+                "feb",
+                "mar",
+                "apr",
+                "may",
+                "jun",
+                "jul",
+                "aug",
+                "sep",
+                "oct",
+                "nov",
+                "dec",
+            ];
+            var now = new Date();
+            var month = months[now.getMonth()];
+            var day = now.getDay();
+            var date = now.getDate();
+            console.log(month + "|" + "day");
+            return ` ${month} | ${date} `;
+        };
+        today.innerHTML = getcurday() + " | " + getCurrentday();
+    </script>
+</body>
+
+</html>
